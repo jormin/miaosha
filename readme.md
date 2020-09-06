@@ -13,24 +13,182 @@
     为了配合压测，配置中限定了 web 服务使用 4个物理核心 + 8G内存，所以启动的时候需要增加 **--compatibility** 选项
 
    ```
-   ➜  miaosha git:(master) ✗ docker-compose --compatibility up -d
    Building web
    Step 1/3 : FROM ccr.ccs.tencentyun.com/jormin/php-swoole:0.0.1
     ---> 6c409524d0f8
    Step 2/3 : COPY src /var/www/html/
-    ---> fd5bad0ead1d
-   Step 3/3 : RUN cd /var/www/html && chmod -R 777 storage
-    ---> Running in 7f31da9c2206
-   Removing intermediate container 7f31da9c2206
-    ---> 3bf017a5e47c
+    ---> 707e77f3757a
+   Step 3/3 : RUN cd /var/www/html && composer install && chmod -R 777 storage
+    ---> Running in 24a7ffa9911b
+   Loading composer repositories with package information
+   Installing dependencies (including require-dev) from lock file
+   Package operations: 104 installs, 0 updates, 0 removals
+     - Installing kylekatarnls/update-helper (1.2.1): Downloading (100%)
+     - Installing phpdocumentor/reflection-common (2.2.0): Downloading (100%)
+     - Installing phpdocumentor/type-resolver (1.3.0): Downloading (100%)
+     - Installing symfony/translation-contracts (v2.1.3): Downloading (100%)
+     - Installing symfony/polyfill-mbstring (v1.18.1): Downloading (100%)
+     - Installing symfony/translation (v4.4.12): Downloading (100%)
+     - Installing nesbot/carbon (1.25.3): Downloading (100%)
+     - Installing psr/simple-cache (1.0.1): Downloading (100%)
+     - Installing psr/container (1.0.0): Downloading (100%)
+     - Installing illuminate/contracts (v5.6.39): Downloading (100%)
+     - Installing doctrine/inflector (1.4.3): Downloading (100%)
+     - Installing illuminate/support (v5.6.39): Downloading (100%)
+     - Installing symfony/finder (v4.4.12): Downloading (100%)
+     - Installing illuminate/filesystem (v5.6.39): Downloading (100%)
+     - Installing symfony/service-contracts (v2.1.3): Downloading (100%)
+     - Installing symfony/polyfill-php80 (v1.18.1): Downloading (100%)
+     - Installing symfony/polyfill-php73 (v1.18.1): Downloading (100%)
+     - Installing symfony/console (v4.4.12): Downloading (100%)
+     - Installing illuminate/console (v5.6.39): Downloading (100%)
+     - Installing doctrine/event-manager (1.1.1): Downloading (100%)
+     - Installing doctrine/cache (1.10.2): Downloading (100%)
+     - Installing doctrine/dbal (2.10.2): Downloading (100%)
+     - Installing symfony/process (v4.4.12): Downloading (100%)
+     - Installing symfony/polyfill-ctype (v1.18.1): Downloading (100%)
+     - Installing symfony/filesystem (v5.1.4): Downloading (100%)
+     - Installing seld/phar-utils (1.1.1): Downloading (100%)
+     - Installing seld/jsonlint (1.8.2): Downloading (100%)
+     - Installing psr/log (1.1.3): Downloading (100%)
+     - Installing justinrainbow/json-schema (5.2.10): Downloading (100%)
+     - Installing composer/xdebug-handler (1.4.3): Downloading (100%)
+     - Installing composer/spdx-licenses (1.5.4): Downloading (100%)
+     - Installing composer/semver (1.5.1): Downloading (100%)
+     - Installing composer/ca-bundle (1.2.8): Downloading (100%)
+     - Installing composer/composer (1.10.10): Downloading (100%)
+     - Installing barryvdh/reflection-docblock (v2.0.6): Downloading (100%)
+     - Installing barryvdh/laravel-ide-helper (v2.8.0): Downloading (100%)
+     - Installing predis/predis (v1.1.4): Downloading (100%)
+     - Installing illuminate/redis (v5.6.0): Downloading (100%)
+     - Installing symfony/polyfill-php72 (v1.18.1): Downloading (100%)
+     - Installing paragonie/random_compat (v9.99.99): Downloading (100%)
+     - Installing symfony/polyfill-php70 (v1.18.1): Downloading (100%)
+     - Installing symfony/polyfill-intl-normalizer (v1.18.1): Downloading (100%)
+     - Installing symfony/polyfill-intl-idn (v1.18.1): Downloading (100%)
+     - Installing symfony/mime (v5.1.4): Downloading (100%)
+     - Installing symfony/http-foundation (v4.4.12): Downloading (100%)
+     - Installing illuminate/session (v5.6.39): Downloading (100%)
+     - Installing symfony/event-dispatcher-contracts (v1.1.9): Downloading (100%)
+     - Installing symfony/event-dispatcher (v4.4.12): Downloading (100%)
+     - Installing symfony/var-dumper (v5.1.4): Downloading (100%)
+     - Installing symfony/debug (v4.4.12): Downloading (100%)
+     - Installing symfony/error-handler (v4.4.12): Downloading (100%)
+     - Installing symfony/http-kernel (v4.4.12): Downloading (100%)
+     - Installing nikic/fast-route (v1.3.0): Downloading (100%)
+     - Installing illuminate/container (v5.6.39): Downloading (100%)
+     - Installing illuminate/events (v5.6.39): Downloading (100%)
+     - Installing illuminate/view (v5.6.39): Downloading (100%)
+     - Installing illuminate/translation (v5.6.39): Downloading (100%)
+     - Installing illuminate/validation (v5.6.39): Downloading (100%)
+     - Installing illuminate/database (v5.6.39): Downloading (100%)
+     - Installing illuminate/queue (v5.6.39): Downloading (100%)
+     - Installing illuminate/pipeline (v5.6.39): Downloading (100%)
+     - Installing illuminate/pagination (v5.6.39): Downloading (100%)
+     - Installing monolog/monolog (1.25.5): Downloading (100%)
+     - Installing illuminate/log (v5.6.39): Downloading (100%)
+     - Installing illuminate/http (v5.6.39): Downloading (100%)
+     - Installing illuminate/hashing (v5.6.39): Downloading (100%)
+     - Installing illuminate/encryption (v5.6.39): Downloading (100%)
+     - Installing illuminate/config (v5.6.39): Downloading (100%)
+     - Installing illuminate/cache (v5.6.39): Downloading (100%)
+     - Installing illuminate/bus (v5.6.39): Downloading (100%)
+     - Installing illuminate/broadcasting (v5.6.39): Downloading (100%)
+     - Installing illuminate/auth (v5.6.39): Downloading (100%)
+     - Installing dragonmantank/cron-expression (v2.3.0): Downloading (100%)
+     - Installing laravel/lumen-framework (v5.6.4): Downloading (100%)
+     - Installing swooletw/laravel-swoole (v2.6.67): Downloading (100%)
+     - Installing vlucas/phpdotenv (v2.6.6): Downloading (100%)
+     - Installing fzaninotto/faker (v1.9.1): Downloading (100%)
+     - Installing hamcrest/hamcrest-php (v2.0.1): Downloading (100%)
+     - Installing mockery/mockery (1.3.3): Downloading (100%)
+     - Installing webmozart/assert (1.9.1): Downloading (100%)
+     - Installing phpdocumentor/reflection-docblock (5.2.1): Downloading (100%)
+     - Installing phpunit/php-token-stream (3.1.1): Downloading (100%)
+     - Installing sebastian/version (2.0.1): Downloading (100%)
+     - Installing sebastian/resource-operations (2.0.1): Downloading (100%)
+     - Installing sebastian/recursion-context (3.0.0): Downloading (100%)
+     - Installing sebastian/object-reflector (1.1.1): Downloading (100%)
+     - Installing sebastian/object-enumerator (3.0.3): Downloading (100%)
+     - Installing sebastian/global-state (2.0.0): Downloading (100%)
+     - Installing sebastian/exporter (3.1.2): Downloading (100%)
+     - Installing sebastian/environment (4.2.3): Downloading (100%)
+     - Installing sebastian/diff (3.0.2): Downloading (100%)
+     - Installing sebastian/comparator (3.0.2): Downloading (100%)
+     - Installing phpunit/php-timer (2.1.2): Downloading (100%)
+     - Installing phpunit/php-text-template (1.2.1): Downloading (100%)
+     - Installing phpunit/php-file-iterator (2.0.2): Downloading (100%)
+     - Installing theseer/tokenizer (1.2.0): Downloading (100%)
+     - Installing sebastian/code-unit-reverse-lookup (1.0.1): Downloading (100%)
+     - Installing phpunit/php-code-coverage (6.1.4): Downloading (100%)
+     - Installing doctrine/instantiator (1.3.1): Downloading (100%)
+     - Installing phpspec/prophecy (1.11.1): Downloading (100%)
+     - Installing phar-io/version (2.0.1): Downloading (100%)
+     - Installing phar-io/manifest (1.0.3): Downloading (100%)
+     - Installing myclabs/deep-copy (1.10.1): Downloading (100%)
+     - Installing phpunit/phpunit (7.5.20): Downloading (100%)
+   symfony/translation suggests installing symfony/config
+   symfony/translation suggests installing symfony/yaml
+   illuminate/support suggests installing ramsey/uuid (Required to use Str::uuid() (^3.7).)
+   illuminate/filesystem suggests installing league/flysystem (Required to use the Flysystem local and FTP drivers (~1.0).)
+   illuminate/filesystem suggests installing league/flysystem-aws-s3-v3 (Required to use the Flysystem S3 driver (~1.0).)
+   illuminate/filesystem suggests installing league/flysystem-cached-adapter (Required to use the Flysystem cache (~1.0).)
+   illuminate/filesystem suggests installing league/flysystem-rackspace (Required to use the Flysystem Rackspace driver (~1.0).)
+   illuminate/filesystem suggests installing league/flysystem-sftp (Required to use the Flysystem SFTP driver (~1.0).)
+   symfony/service-contracts suggests installing symfony/service-implementation
+   symfony/console suggests installing symfony/lock
+   illuminate/console suggests installing guzzlehttp/guzzle (Required to use the ping methods on schedules (~6.0).)
+   doctrine/cache suggests installing alcaeus/mongo-php-adapter (Required to use legacy MongoDB driver)
+   barryvdh/reflection-docblock suggests installing dflydev/markdown (~1.0)
+   barryvdh/reflection-docblock suggests installing erusev/parsedown (~1.0)
+   predis/predis suggests installing ext-phpiredis (Allows faster serialization and deserialization of the Redis protocol)
+   paragonie/random_compat suggests installing ext-libsodium (Provides a modern crypto API that can be used to generate random bytes.)
+   symfony/polyfill-intl-normalizer suggests installing ext-intl (For best performance)
+   symfony/polyfill-intl-idn suggests installing ext-intl (For best performance)
+   symfony/event-dispatcher-contracts suggests installing psr/event-dispatcher
+   symfony/event-dispatcher suggests installing symfony/dependency-injection
+   symfony/var-dumper suggests installing ext-intl (To show region name in time zone dump)
+   symfony/http-kernel suggests installing symfony/browser-kit
+   symfony/http-kernel suggests installing symfony/config
+   symfony/http-kernel suggests installing symfony/dependency-injection
+   illuminate/queue suggests installing aws/aws-sdk-php (Required to use the SQS queue driver (~3.0).)
+   illuminate/queue suggests installing ext-pcntl (Required to use all features of the queue worker.)
+   illuminate/queue suggests installing pda/pheanstalk (Required to use the Beanstalk queue driver (~3.0).)
+   monolog/monolog suggests installing aws/aws-sdk-php (Allow sending log messages to AWS services like DynamoDB)
+   monolog/monolog suggests installing doctrine/couchdb (Allow sending log messages to a CouchDB server)
+   monolog/monolog suggests installing ext-amqp (Allow sending log messages to an AMQP server (1.0+ required))
+   monolog/monolog suggests installing ext-mongo (Allow sending log messages to a MongoDB server)
+   monolog/monolog suggests installing graylog2/gelf-php (Allow sending log messages to a GrayLog2 server)
+   monolog/monolog suggests installing mongodb/mongodb (Allow sending log messages to a MongoDB server via PHP Driver)
+   monolog/monolog suggests installing php-amqplib/php-amqplib (Allow sending log messages to an AMQP server using php-amqplib)
+   monolog/monolog suggests installing php-console/php-console (Allow sending log messages to Google Chrome)
+   monolog/monolog suggests installing rollbar/rollbar (Allow sending log messages to Rollbar)
+   monolog/monolog suggests installing ruflin/elastica (Allow sending log messages to an Elastic Search server)
+   monolog/monolog suggests installing sentry/sentry (Allow sending log messages to a Sentry server)
+   illuminate/broadcasting suggests installing pusher/pusher-php-server (Required to use the Pusher broadcast driver (~3.0).)
+   laravel/lumen-framework suggests installing laravel/tinker (Required to use the tinker console command (~1.0).)
+   sebastian/global-state suggests installing ext-uopz (*)
+   phpunit/php-code-coverage suggests installing ext-xdebug (^2.6.0)
+   phpunit/phpunit suggests installing ext-soap (*)
+   phpunit/phpunit suggests installing ext-xdebug (*)
+   phpunit/phpunit suggests installing phpunit/php-invoker (^2.0)
+   Package phpunit/php-token-stream is abandoned, you should avoid using it. No replacement was suggested.
+   Generating optimized autoload files
+   Deprecation Notice: Class SwooleTW\Http\Helpers\VarDumper located in ./vendor/swooletw/laravel-swoole/src/Helpers/Dumper.php does not comply with psr-4 autoloading standard. It will not autoload anymore in Composer v2.0. in phar:///usr/local/bin/composer/src/Composer/Autoload/ClassMapGenerator.php:201
+   Carbon 1 is deprecated, see how to migrate to Carbon 2.
+   https://carbon.nesbot.com/docs/#api-carbon-2
+       You can run './vendor/bin/upgrade-carbon' to get help in updating carbon and other frameworks and libraries that depend on it.
+   40 packages you are using are looking for funding.
+   Use the `composer fund` command to find out more!
+   Removing intermediate container 24a7ffa9911b
+    ---> b29ad162632c
    
-   Successfully built 3bf017a5e47c
+   Successfully built b29ad162632c
    Successfully tagged miaosha_web:latest
    WARNING: Image for service web was built because it did not already exist. To rebuild this image you must use `docker-compose build` or `docker-compose up --build`.
    Creating miaosha-mysql ... done
-   Creating miaosha-redis ... done
    Creating miaosha-web   ... done
-   ➜  miaosha git:(master) ✗
+   Creating miaosha-redis ... done
    ```
    
 2. 监听 docker 容器状态
@@ -85,7 +243,71 @@
    Swoole http server started: <http://0.0.0.0:8080>
    ```
 
-5. 开启一个新的窗口进行压测，本次压测采用的是 ab，100个并发量完成 两万 个请求
+5. 开启一个新的窗口进入web容器，查看当前活动数据
+
+    压测前活动数据：缓存数据中活动总量为1000，库存为1000，总用户量和成功用户量都为0，数据库信息中商品销量为0，库存1000，活动总量和库存都为1000，订单总数为0，数据正常
+    
+   ```
+   /var/www/html # php artisan activity-info 1
+   ************************************* 缓存信息 *************************************
+   秒杀活动缓存：
+   +------------+------------+------------+--------+------+------------+-------+------------+----+
+   | created_at | start_time | product_id | amount | rate | end_time   | stock | deleted_at | id |
+   +------------+------------+------------+--------+------+------------+-------+------------+----+
+   | 1599397545 | 1599397545 | 1          | 1000   | 10   | 1599483945 | 1000  | 0          | 1  |
+   +------------+------------+------------+--------+------+------------+-------+------------+----+
+   总请求量：
+   总用户量：0
+   成功用户量：0
+   
+   ************************************* 数据库信息 *************************************
+   商品信息：
+   +----+-------+------+-------+------------+------------+------------+
+   | id | price | sale | stock | created_at | updated_at | deleted_at |
+   +----+-------+------+-------+------------+------------+------------+
+   | 1  | 9900  | 0    | 1000  | 1599397545 | 1599397545 | 0          |
+   +----+-------+------+-------+------------+------------+------------+
+   活动信息：
+   +----+------------+------------+------------+--------+-------+------+------------+
+   | id | product_id | start_time | end_time   | amount | stock | rate | created_at |
+   +----+------------+------------+------------+--------+-------+------+------------+
+   | 1  | 1          | 1599397545 | 1599483945 | 1000   | 1000  | 10   | 1599397545 |
+   +----+------------+------------+------------+--------+-------+------+------------+
+   订单总数信息：0
+   ```
+
+   压测后活动数据：缓存数据中活动总量为1000，库存为0，总请求量为10000，成功用户量为1000，数据库信息中商品销量为1000，库存0，活动总量1000，库存为0，订单总数为1000，数据正常
+
+   ```
+   /var/www/html # php artisan activity-info 1
+   ************************************* 缓存信息 *************************************
+   秒杀活动缓存：
+   +------------+------------+------------+--------+------+------------+-------+------------+----+
+   | created_at | start_time | product_id | amount | rate | end_time   | stock | deleted_at | id |
+   +------------+------------+------------+--------+------+------------+-------+------------+----+
+   | 1599397545 | 1599397545 | 1          | 1000   | 10   | 1599483945 | 0     | 0          | 1  |
+   +------------+------------+------------+--------+------+------------+-------+------------+----+
+   总请求量：10000
+   总用户量：9953
+   成功用户量：1000
+   
+   ************************************* 数据库信息 *************************************
+   商品信息：
+   +----+-------+------+-------+------------+------------+------------+
+   | id | price | sale | stock | created_at | updated_at | deleted_at |
+   +----+-------+------+-------+------------+------------+------------+
+   | 1  | 9900  | 1000 | 0     | 1599397545 | 1599397641 | 0          |
+   +----+-------+------+-------+------------+------------+------------+
+   活动信息：
+   +----+------------+------------+------------+--------+-------+------+------------+
+   | id | product_id | start_time | end_time   | amount | stock | rate | created_at |
+   +----+------------+------------+------------+--------+-------+------+------------+
+   | 1  | 1          | 1599397545 | 1599483945 | 1000   | 0     | 10   | 1599397545 |
+   +----+------------+------------+------------+--------+-------+------+------------+
+   订单总数信息：1000
+   ```
+
+6. 开启一个新的窗口进行压测，本次压测采用的是 ab，100个并发量完成 一万 个请求
 
    ```
    ➜  ~ ab -c100 -n10000 -k http://127.0.0.1:8080/api/buy\?activityId\=1
@@ -115,37 +337,37 @@
    Document Length:        6 bytes
    
    Concurrency Level:      100
-   Time taken for tests:   9.821 seconds
+   Time taken for tests:   9.476 seconds
    Complete requests:      10000
    Failed requests:        0
    Keep-Alive requests:    10000
    Total transferred:      1920000 bytes
    HTML transferred:       60000 bytes
-   Requests per second:    1018.20 [#/sec] (mean)
-   Time per request:       98.212 [ms] (mean)
-   Time per request:       0.982 [ms] (mean, across all concurrent requests)
-   Transfer rate:          190.91 [Kbytes/sec] received
+   Requests per second:    1055.34 [#/sec] (mean)
+   Time per request:       94.756 [ms] (mean)
+   Time per request:       0.948 [ms] (mean, across all concurrent requests)
+   Transfer rate:          197.88 [Kbytes/sec] received
    
    Connection Times (ms)
                  min  mean[+/-sd] median   max
    Connect:        0    0   0.3      0       4
-   Processing:    28   97  17.8     95     223
-   Waiting:       27   97  17.8     95     223
-   Total:         28   97  17.8     95     223
+   Processing:    33   94  19.6     90     215
+   Waiting:       29   94  19.6     90     215
+   Total:         33   94  19.6     90     215
    
    Percentage of the requests served within a certain time (ms)
-     50%     95
-     66%    101
-     75%    106
-     80%    109
-     90%    118
-     95%    127
-     98%    143
-     99%    158
-    100%    223 (longest request)
+     50%     90
+     66%     97
+     75%    102
+     80%    106
+     90%    119
+     95%    131
+     98%    146
+     99%    157
+    100%    215 (longest request)
    ```
    
-6. 测试完毕后销毁容器和构建的 web 镜像
+7. 测试完毕后销毁容器和构建的 web 镜像
 
    ```
    ➜  miaosha git:(master) ✗ bash destroy.sh
@@ -162,7 +384,7 @@
    Deleted: sha256:2e0647588817016817d5f31ab1e57c3388713095cf9c788808530256309ea79c
    ```   
    
-**从压测结果看出，100个并发量，两万个请求，全部成功，QPS 达到了 1018，请求平均响应时间为 98.212 ms**
+**从压测结果看出，100个并发量，一万个请求，全部成功，QPS 达到了 1055，请求平均响应时间为 94.756 ms**
 
 下图为压测过程中 http 服务的请求记录 及 生成订单队列 的截图：
 
@@ -218,6 +440,7 @@ web 服务采用 lumen5.6 + swoole(4.5.3) 开发，用 8080 端口对外提供�
 - 初始化数据：php artisan mock
 - 启动服务：php artisan swoole:http start
 - 启动队列，该部分也可以配合 supervisor 或者 swoole 进程使用：php artisan queue:work --queue=generate-order
+- 查看活动信息：php artisan activity-info {活动ID，默认1}
 
 生成订单队列Job流程图
 

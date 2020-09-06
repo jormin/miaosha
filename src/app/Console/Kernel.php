@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Console\Commands\ActivityInfo;
 use App\Console\Commands\Mock;
 use App\Console\Commands\Test;
 use Illuminate\Console\Scheduling\Schedule;
@@ -16,6 +17,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         'mock' => Mock::class,
+        'activity-info' => ActivityInfo::class,
         'test' => Test::class
     ];
 

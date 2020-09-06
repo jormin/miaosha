@@ -5,5 +5,5 @@ COPY src /var/www/html/
 
 # 安装composer扩展包并启动nginx
 RUN cd /var/www/html && \
-composer install --no-dev -vvv && \
+composer install && \
 chmod -R 777 storage

@@ -22,7 +22,7 @@ class SeederProduct extends Seeder
                 'https://img20.360buyimg.com/mobilecms/s700x700_jfs/t1/53857/17/8744/37453/5d623c06Eeef0cbe3/ec243fd152dbf719.jpg!q70.jpg'
             ]),
             'sale' => 0,
-            'stock' => 999999999,
+            'stock' => 1000,
             'created_at' => time(),
             'updated_at' => time()
         ]);
