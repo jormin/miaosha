@@ -23,9 +23,9 @@ $app = new Laravel\Lumen\Application(
     realpath(__DIR__ . '/../')
 );
 
- $app->withFacades();
+$app->withFacades();
 
- $app->withEloquent();
+$app->withEloquent();
 
 /*
 |--------------------------------------------------------------------------
@@ -63,9 +63,9 @@ $app->singleton(
 //    App\Http\Middleware\ExampleMiddleware::class
 // ]);
 
-// $app->routeMiddleware([
-//     'auth' => App\Http\Middleware\Authenticate::class,
-// ]);
+$app->routeMiddleware([
+    'buy' => App\Http\Middleware\BuyMiddleware::class
+]);
 
 /*
 |--------------------------------------------------------------------------
@@ -108,7 +108,8 @@ $app->router->group([
 // Api
 $app->router->group([
     'namespace' => 'App\Http\Controllers\Api',
-    'prefix' => 'api'
+    'prefix' => 'api',
+    'middleware' => ['buy']
 ], function ($router) {
     require __DIR__ . '/../routes/api.php';
 });
