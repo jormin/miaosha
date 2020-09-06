@@ -145,6 +145,23 @@
     100%    223 (longest request)
    ```
    
+6. 测试完毕后销毁容器和构建的 web 镜像
+
+   ```
+   ➜  miaosha git:(master) ✗ bash destroy.sh
+   miaosha-web
+   miaosha-redis
+   miaosha-mysql
+   miaosha-web
+   miaosha-redis
+   miaosha-mysql
+   Untagged: miaosha_web:latest
+   Deleted: sha256:183e244e1bdbfdbedb2652974ccdd76584b00afc8bab8443d63223d1a0f7a0ee
+   Deleted: sha256:550267bf5110d6497bb7bae49621c302401ec60c99ff9df6c0f8153e6bd0024c
+   Deleted: sha256:3a432472aa72bcedd452d2583bdc28c61c7f15c480e2170e7e5ca8210a4cc85b
+   Deleted: sha256:2e0647588817016817d5f31ab1e57c3388713095cf9c788808530256309ea79c
+   ```   
+   
 **从压测结果看出，100个并发量，两万个请求，全部成功，QPS 达到了 1018，请求平均响应时间为 98.212 ms**
 
 下图为压测过程中 http 服务的请求记录 及 生成订单队列 的截图：

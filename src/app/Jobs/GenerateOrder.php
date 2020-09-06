@@ -64,7 +64,7 @@ class GenerateOrder extends Job
         // 更新缓存
         $activity = Activity::query()->find($activityId)->getAttributes();
         $activityInfoKey = config('redis.prefix.activity_info') . $activityId;
-        Redis::getDefaultRedisConnection()->set($activityInfoKey, json_encode($activity));
+        Redis::getDefaultRedisConnection()->hmset($activityInfoKey, $activity);
         DB::commit();
     }
 

@@ -21,7 +21,7 @@ class BuyService extends BaseService
         $activityInfoKey = config('redis.prefix.activity_info') . $activityId;
         $activityAllUserIdsKey = config('redis.prefix.activity_all_user_ids') . $activityId;
         $activitySuccessUserIdsKey = config('redis.prefix.activity_success_user_ids') . $activityId;
-        $activity = $this->redisConnection->get($activityInfoKey);
+        $activity = $this->redisConnection->hgetall($activityInfoKey);
         // 缓存中未查询到活动信息
         if (!$activity) {
             $activity = Activity::query()->find($activityId);
@@ -29,9 +29,7 @@ class BuyService extends BaseService
                 return 9001;
             }
             $activity = $activity->getAttributes();
-            $this->redisConnection->set($activityInfoKey, json_encode($activity));
-        } else {
-            $activity = json_decode($activity, true);
+            $this->redisConnection->hmset($activityInfoKey, $activity);
         }
         // 活动未开启
         if ($activity['start_time'] > time()) {
