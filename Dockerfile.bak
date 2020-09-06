@@ -1,0 +1,16 @@
+FROM lnp:0.5
+
+# 拷贝代码
+COPY src /data/wwwroot/
+COPY miaosha.nginx.conf /usr/local/nginx/conf/vhost/
+COPY miaosha.supervisor.ini /etc/supervisord.d/
+COPY start.sh /
+
+# 修改web目录
+RUN sed -i 's/\/data\/wwwroot\/default/\/data\/wwwroot\/default\/public/g' /usr/local/nginx/conf/nginx.conf
+RUN sed -i 's/;port=127.0.0.1:9001/port=*:9001/g' /etc/supervisord.conf
+
+# 安装composer扩展包并启动nginx
+RUN cd /data/wwwroot && \
+#composer install --no-dev -vvv\
+chmod -R 777 storage

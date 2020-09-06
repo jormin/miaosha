@@ -1,0 +1,44 @@
+version: '3.8'
+services:
+  redis:
+    image: redis:latest
+    container_name: miaosha-redis
+    ports:
+      - "6379:6379"
+    networks:
+      - default
+    volumes:
+      - "./compose/redis/data:/data"
+    restart: always
+  mysql:
+    image: library/mysql:5.7.13
+    container_name: miaosha-mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - default
+    environment:
+      MYSQL_ROOT_PASSWORD: miaosha
+      MYSQL_DATABASE: miaosha
+    volumes:
+      - "./compose/mysql/data:/var/lib/mysql"
+    restart: always
+  web:
+    build: .
+    ports:
+      - "8080:8080"
+    container_name: miaosha-web
+    networks:
+      - default
+    restart: always
+    volumes:
+      - "./compose/web/logs:/var/www/html/storage/logs"
+    tty: true
+    deploy:
+      resources:
+        limits:
+          cpus: "8"
+          memory: 8G
+
+networks:
+  default:

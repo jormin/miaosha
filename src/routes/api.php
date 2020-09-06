@@ -11,10 +11,4 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
-});
-
-$router->get('manager/create', 'ManagerController@create');
-$router->get('manager/clear', 'ManagerController@clear');
-$router->get('manager/activity', 'ManagerController@activity');
+$router->get('/buy', 'BuyController@buy');
