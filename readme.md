@@ -285,16 +285,16 @@ web 服务采用 lumen5.6 + swoole(4.5.3) 开发，用 8080 端口对外提供�
 
 秒杀接口处理的是生成订单前的部分逻辑，本 Job 处理的便是生成订单及之后的逻辑部分，并指定队列进行处理以及设定尝试次数，如果多次尝试依然失败，本 Job 会记录失败信息，并在最后一次失败时进行特殊处理，包括不限于记录日志、发送短信、发送语音电话、发送微信消息、发送IM报警等
 
+流程图
+
+![](https://blog.cdn.lerzen.com/tnakgI2i7YIZUu8fSHCqsGGrRUYV0wy8seGYdrLpCOY=.jpg)
+
 #### 3. 核心命令
 
 - 初始化数据：php artisan mock
 - 启动服务：php artisan swoole:http start
 - 启动队列，该部分也可以配合 supervisor 或者 swoole 进程使用：php artisan queue:work --queue=generate-order
 - 查看活动信息：php artisan activity-info {活动ID，默认1}
-
-生成订单队列Job流程图
-
-![](https://blog.cdn.lerzen.com/tnakgI2i7YIZUu8fSHCqsGGrRUYV0wy8seGYdrLpCOY=.jpg)
     
 ### mysql服务
 
