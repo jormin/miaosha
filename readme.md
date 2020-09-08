@@ -234,7 +234,7 @@
 
 下图为压测过程中 http 服务的请求记录 及 生成订单队列 的截图：
 
-![](https://blog.cdn.lerzen.com/2gb6FrKvtB6FKMTRlm6mzlpW+kT63wcFftmfpCLDYVc=.jpg)
+![](https://blog.cdn.lerzen.com/2gb6FrKvtB6FKMTRlm6mzlpW+kT63wcFftmfpCLDYVc=.jpg?v=1.0)
 
 ## 说明
 
