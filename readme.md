@@ -217,17 +217,21 @@
 
    ```
    ➜  miaosha git:(master) ✗ bash destroy.sh
+   停止容器
    miaosha-web
    miaosha-redis
    miaosha-mysql
+   删除容器
    miaosha-web
    miaosha-redis
    miaosha-mysql
+   删除web镜像
    Untagged: miaosha_web:latest
-   Deleted: sha256:183e244e1bdbfdbedb2652974ccdd76584b00afc8bab8443d63223d1a0f7a0ee
-   Deleted: sha256:550267bf5110d6497bb7bae49621c302401ec60c99ff9df6c0f8153e6bd0024c
-   Deleted: sha256:3a432472aa72bcedd452d2583bdc28c61c7f15c480e2170e7e5ca8210a4cc85b
-   Deleted: sha256:2e0647588817016817d5f31ab1e57c3388713095cf9c788808530256309ea79c
+   Deleted: sha256:049343ac365c2e10cf39b274ea0e4da90894dfc0cf94d8cad0844e3b746678fc
+   Deleted: sha256:7393c4f4eac8ae7249cb35f5163aaa9a0d4e75edc8d913cd8a5813b8942ddc42
+   Deleted: sha256:31ce7d77af52b15888e3dbb5046236eec9b23b455ca1e706868d6d2cf74f1dc6
+   Deleted: sha256:48e7e4bbb2047d8813246959f2d402d3b30d81752adfe68d8687352fac026da2
+   删除mysql和redis数据
    ```   
    
 **从压测结果看出，100个并发量，一万个请求，全部成功，QPS 达到了 1055，请求平均响应时间为 94.756 ms**
