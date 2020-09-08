@@ -371,5 +371,6 @@ key | 数据类型 | 说明
 ---|---|---
 request_num | string | 记录接口请求量，每次请求时进行 incr 操作
 activity_info_{活动ID} | hash | 活动详情缓存信息
+activity_stock_{活动ID} | list | 活动库存列表
 activity_all_user_ids_{活动ID} | set | 所有参与活动的用户ID，也可以使用zset，记录用户参与时间
 activity_success_user_ids_{活动ID} | set | 所有秒杀成功的用户ID，也可以使用zset，记录用户成功时间

@@ -6,6 +6,7 @@ namespace App\Services;
 
 use App\Jobs\GenerateOrder;
 use App\Models\Activity;
+use Illuminate\Support\Facades\Log;
 
 class BuyService extends BaseService
 {
@@ -19,6 +20,7 @@ class BuyService extends BaseService
     public function buy(int $activityId, int $userId)
     {
         $activityInfoKey = config('redis.prefix.activity_info') . $activityId;
+        $activityStockKey = config('redis.prefix.activity_stock') . $activityId;
         $activityAllUserIdsKey = config('redis.prefix.activity_all_user_ids') . $activityId;
         $activitySuccessUserIdsKey = config('redis.prefix.activity_success_user_ids') . $activityId;
         $activity = $this->redisConnection->hgetall($activityInfoKey);
@@ -46,9 +48,9 @@ class BuyService extends BaseService
         }
         // 记录该用户已参与
         $this->redisConnection->sadd($activityAllUserIdsKey, [$userId]);
-        // 已抢完
-        $currentAmount = $this->redisConnection->scard($activitySuccessUserIdsKey);
-        if ($currentAmount >= $activity['amount']) {
+        // 读取库存
+        $stock = $this->redisConnection->lpop($activityStockKey);
+        if (!$stock) {
             return 1002;
         }
 //        // 增加概率

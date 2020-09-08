@@ -58,7 +58,10 @@ class Mock extends Command
         $this->info('写入秒杀活动缓存');
         $activity = Activity::query()->first()->getAttributes();
         $activityInfoKey = config('redis.prefix.activity_info') . $activity['id'];
+        $activityStockKey = config('redis.prefix.activity_stock') . $activity['id'];
+        $this->info($activityStockKey);
         $redisConnection->hmset($activityInfoKey, $activity);
+        $redisConnection->lpush($activityStockKey, range(1, $activity['amount']));
         $this->info('模拟测试准备完成');
     }
 
